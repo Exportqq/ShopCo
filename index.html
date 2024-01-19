@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="output.css" rel="stylesheet">
+    <link href="nouislider.css" rel="stylesheet">
+    <script src="nouislider.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body style="background-color: cadetblue;">
+    <div class="backround">
+        <div class="pt-[62px]">
+            <ul>
+                <li>
+                    <img class="mt-[13px] ml-[100px]" src="img/SHOP.CO.svg">
+                </li>
+                <li class="ml-[40px] mr-[40px] ">
+                    <div class="sercher">
+                        <img class="float-left ml-[16px] mr-[12px]" src="img/lup.svg">
+                        <input type="text" class="sercher" oninput="search()" placeholder="Search for a product...">               
+                    </div>
+                </li>
+                <li>
+                    <img alt="bag" class="w-[34px] h-[34px] mt-[6px] absolute" src="img/Frame.svg">
+                    <div>
+                        <p id="bagCount" class="bag-counter"></p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="container">
+            <div class="mb-[25px]">
+                <ul>
+                    <li>
+                        <p class="container-txt">Filters</p>
+                    </li>
+                    <li>
+                        <button class="">
+                            <img src="img/tools.svg">
+                        </button>
+                    </li>
+                </ul>
+            </div>
+            <div class="line"></div>
+            <div class="pt-[27px] pb-[27px]">
+                <button onclick="hideTshirt()" class="clothes-txt">T-shirts</button>
+                <button onclick="hideShorts()" class="clothes-txt">Shorts</button>
+                <button onclick="hideShirts()" class="clothes-txt">Shirts</button>
+                <button onclick="hideHoodie()" class="clothes-txt">Hoodie</button>
+                <button onclick="hideJeans()" class="clothes-txt">Jeans</button>
+            </div>
+            <div class="line"></div>
+            <div>
+                <div class="mt-[24px] mb-[24px]">
+                    <p class="price-control-txt">Price</p>
+                    <div class="mt-[20px] pb-[10px]">
+                        <input class="price-clider-min" value="600" type="range" min="100" max="500" id="ranger" oninput="fun()">
+                        <input class="price-clider-max" value="1000" type="range" min="500" id="range_max" max="1000" oninput="upper()">
+                    </div>
+                    <div class="w-[244px] h-[24px]">
+                        <div class="inp-min" id="send_result">$100</div>
+                        <p id="min-value"></p>
+                        <div class="inp-max" id="send_result_max">$1000</div>
+                    </div>
+                </div>
+            </div>
+            <div class="line"></div>
+            <div class="mt-[24px] w-[220px]">
+                <p class="size-txt">Size</p>
+                <button onclick="hideXXSmall()" class="transition duration-350 hover:bg-black hover:text-white mt-[8px] float-left w-[96px] h-[39px] rounded-[62px] bg-[#F0F0F0] text-opacity-60 font-montserrat text-sm font-normal">
+                    XX-Small
+                </button>
+                <button onclick="hideXSmall()" class="transition duration-350 hover:bg-black hover:text-white ml-[8px] mt-[8px] float-left w-[88px] h-[39px] rounded-[62px] bg-[#F0F0F0] text-opacity-60 font-montserrat text-sm font-normal">
+                    X-Small
+                </button>
+                <button onclick="hideSmall()" class="transition duration-350 hover:bg-black hover:text-white mb-[8px] mt-[8px] float-left w-[74px] h-[39px] rounded-[62px] bg-[#F0F0F0] text-opacity-60 font-montserrat text-sm font-normal">
+                    Small
+                </button>
+                <button onclick="hideMedium()" class="transition duration-350 hover:bg-black hover:text-white mb-[8px] mt-[8px] ml-[8px] float-left w-[90px] h-[39px] rounded-[62px] bg-[#F0F0F0] text-opacity-60 font-montserrat text-sm font-normal">
+                    Medium
+                </button>
+                <button onclick="hideLarge()" class="transition duration-350 hover:bg-black hover:text-white float-left w-[76px] h-[39px] rounded-[62px] bg-[#F0F0F0] text-opacity-60 font-montserrat text-sm font-normal">
+                    Large
+                </button>
+                <button onclick="hideXLarge()" class="transition duration-350 hover:bg-black hover:text-white ml-[8px] float-left w-[89px] h-[39px] rounded-[62px] bg-[#F0F0F0] text-opacity-60 font-montserrat text-sm font-normal">
+                    X-Large
+                </button>
+                <button onclick="hideXXLarge()" class="transition duration-350 hover:bg-black hover:text-white mb-[8px] mt-[8px] float-left w-[98px] h-[39px] rounded-[62px] bg-[#F0F0F0] text-opacity-60 font-montserrat text-sm font-normal">
+                    XX-Large
+                </button>
+                <button onclick="hide3XLarge()" class="transition duration-350 hover:bg-black hover:text-white mb-[8px] mt-[8px] ml-[8px] float-left w-[97px] h-[39px] rounded-[62px] bg-[#F0F0F0] text-opacity-60 font-montserrat text-sm font-normal">
+                    3X-Large
+                </button>
+                <button onclick="hide4XLarge()" class="mb-[24px] transition duration-350 hover:bg-black hover:text-white w-[98px] h-[39px] rounded-[62px] bg-[#F0F0F0] text-opacity-60 font-montserrat text-sm font-normal">
+                    4X-Large
+                </button>
+            </div>
+            <div class="line"></div>
+            <button onclick="resetFiltr()" class="refresh-btn">
+                Reset filters
+            </button>
+            <div class="line"></div>
+            <div class="mt-[24px] w-[220px]">
+                <p class="ps-text">The settings of one filter are not combined with another filter, each filter works separately</p>
+                <div class="navigation-git">
+                    <img class="float-left" src="img/giticon.svg" alt="github">
+                    <button onclick="window.location.href='https://github.com/Exportqq'" class="btn-git">
+                        Subscribe
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="container-clothes">
+            <div class="product-list" id="product-list">
+                <div id="xxsmall">
+                    <div class="product" id="tshirt" style="position: relative;">
+                        <button class="clothes-btn">
+                            <img class="clothes-image" src="img/party.png" alt="">
+                            <div class="p-details">
+                                <p class="clothes-name-txt">Gradient Graphic T-shirt</p>
+                                <p class="clothes-price-txt">$145</p>
+                            </div>
+                            <button id="clicker" class="addBag-btn">Add to Bag</button>
+                        </button>
+                    </div>
+                </div>
+                <div>
+                    <div id="small">
+                        <div class="product" id="tshirt" style="display: block; position: relative;">
+                            <button class="clothes-btn">
+                                <img class="clothes-image" src="img/polo.png" alt="">
+                                <div class="p-details">
+                                    <p class="clothes-name-txt">Polo with Tipping Details</p>
+                                    <p class="clothes-price-txt">$280</p>
+                                </div>
+                                <button id="clicker" class="addBag-btn">Add to Bag</button>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div id="3xlarge">
+                        <div class="productLargePrice" id="tshirt" style="display: block; position: relative;">
+                            <button class="clothes-btn">
+                                <img class="clothes-image" src="img/RefWhite.png" alt="">
+                                <div class="p-details">
+                                    <p class="clothes-name-txt">Black Striped T-shirt</p>
+                                    <p class="clothes-price-txt">$520</p>
+                                </div>
+                                <button id="clicker" class="addBag-btn">Add to Bag</button>                        
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div id="medium">
+                        <div class="product" id="jeans" style="display: block; position: relative;">
+                            <button class="clothes-btn">
+                                <img class="clothes-image" src="img/jeans.png" alt="">
+                                <div class="p-details">
+                                    <p class="clothes-name-txt">Skinny Fit Jeans</p>
+                                    <p class="clothes-price-txt">$440</p>
+                                </div>
+                                <button id="clicker" class="addBag-btn">Add to Bag</button>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div id="4xlarge">
+                        <div class="product" id="shirt" style="display: block; position: relative;">
+                            <button class="clothes-btn">
+                                <img class="clothes-image" src="img/rubash.png" alt="">
+                                <div class="p-details">
+                                    <p class="clothes-name-txt">Checkered Shirt</p>
+                                    <p class="clothes-price-txt">$480</p>
+                                </div>
+                                <button id="clicker" class="addBag-btn">Add to Bag</button>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div id="xxlarge">
+                        <div class="productLargePrice" id="tshirt" class="product" style="display: block; position: relative;">
+                            <button class="clothes-btn">
+                                <img class="clothes-image" src="img/RefOrange.png" alt="">
+                                <div class="p-details">
+                                    <p class="clothes-name-txt">Sleeve Striped T-shirt</p>
+                                    <p class="clothes-price-txt">$830</p>
+                                </div>
+                                <button id="clicker" class="addBag-btn">Add to Bag</button>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div id="xsmall">
+                        <div class="product" id="shirt" style="display: block; position: relative;">
+                            <button class="clothes-btn">
+                                <img class="clothes-image" src="img/rubashGreen.png" alt="">
+                                <div class="p-details">
+                                    <p class="clothes-name-txt">Vertical Striped Shirt</p>
+                                    <p class="clothes-price-txt">$212</p>
+                                </div>
+                                <button id="clicker" class="addBag-btn">Add to Bag</button>
+                            </button>
+                        </div>
+                    </div>  
+                </div>
+                <div>
+                    <div id="4xlarge">
+                        <div class="productLargePrice" id="tshirt" style="display: block; position: relative;">
+                            <button class="clothes-btn">
+                                <img class="clothes-image" src="img/orangeTsrt.png" alt="">
+                                <div class="p-details">
+                                    <p class="clothes-name-txt">Courage Graphic T-shirt</p>
+                                    <p class="clothes-price-txt">$855</p>
+                                </div>
+                                <button id="clicker" class="addBag-btn">Add to Bag</button>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div id="medium">
+                        <div class="productLargePrice" id="shorts" style="display: block; position: relative;">
+                            <button class="clothes-btn">
+                                <img class="clothes-image" src="img/short.png" alt="">
+                                <div class="p-details">
+                                    <p class="clothes-name-txt">Loose Fit Bermuda Shorts</p>
+                                    <p class="clothes-price-txt">$680</p>
+                                </div>
+                                <button id="clicker" class="addBag-btn">Add to Bag</button>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        let clothesImageOne = document.getElementById("clothesImageOne");
+        clothesImageOne.src = clothes[0].img;
+
+        let clothesImageTwo = document.getElementById("clothesImageTwo");
+        clothesImageTwo.src = clothes[1].img;
+
+        let clothesImageThree = document.getElementById("clothesImageThree");
+        clothesImageThree.src = clothes[2].img;
+
+        document.querySelector('.addBag-btn').addEventListener('click', function() {
+            var button = this;
+            button.classList.remove('active');
+            setTimeout(function() {
+                button.classList.add('active');
+            }, 10);
+            });
+
+            function search() {
+                const searchValue = document.querySelector('input').value.toLowerCase().trim();
+                const products = document.querySelectorAll('.product');
+                const productLargePrices = document.querySelectorAll('.productLargePrice');
+
+                products.forEach((product) => {
+                    const productName = product.querySelector('p').textContent.toLowerCase();
+                    if (productName.includes(searchValue)) {
+                        product.style.display = 'block';
+                    } else {
+                        product.style.display = 'none';
+                    }
+                });
+
+                productLargePrices.forEach((productLargePrice) => {
+                    const price = productLargePrice.textContent.toLowerCase();
+                    if (price.includes(searchValue)) {
+                        productLargePrice.style.display = 'block';
+                    } else {
+                        productLargePrice.style.display = 'none';
+                    }
+                });
+            }
+
+
+        function hideTshirt() {
+            var products = document.querySelectorAll('[id="hoodie"], [id="jeans"], [id="shorts"], [id="shirt"]');
+            products.forEach(function(product) {
+                product.style.display = 'none';
+            });
+            var products = document.querySelectorAll('[id="tshirt"]');
+            products.forEach(function(product) {
+                product.style.display = 'block';
+            });
+        }
+
+        function hideHoodie() {
+            var products = document.querySelectorAll('[id="tshirt"], [id="jeans"], [id="shorts"], [id="shirt"]');
+            products.forEach(function(product) {
+                product.style.display = 'none';
+            });
+            var products = document.querySelectorAll('[id="hoodie"]');
+            products.forEach(function(product) {
+                product.style.display = 'block';
+            });
+        }
+
+        function hideShirts() {
+            var products = document.querySelectorAll('[id="hoodie"], [id="jeans"], [id="shorts"], [id="tshirt"]');
+            products.forEach(function(product) {
+                product.style.display = 'none';
+            });
+            var products = document.querySelectorAll('[id="shirt"]');
+            products.forEach(function(product) {
+                product.style.display = 'block';
+            });
+        }
+
+        function hideShorts() {
+            var products = document.querySelectorAll('[id="hoodie"], [id="jeans"], [id="tshirt"], [id="shirt"]');
+            products.forEach(function(product) {
+                product.style.display = 'none';
+            });
+            var products = document.querySelectorAll('[id="shorts"]');
+            products.forEach(function(product) {
+                product.style.display = 'block';
+            });
+        }
+
+        function hideJeans() {
+            var products = document.querySelectorAll('[id="hoodie"], [id="tshirt"], [id="shorts"], [id="shirt"]');
+            products.forEach(function(product) {
+                product.style.display = 'none';
+            });
+            var products = document.querySelectorAll('[id="jeans"]');
+            products.forEach(function(product) {
+                product.style.display = 'block';
+            });
+        }
+
+        function hideXXSmall() {
+            var products = document.querySelectorAll('[id="xxsmall"], [id="small"], [id="xxlarge"], [id="xsmall"], [id="3xlarge"], [id="medium"], [id="4xlarge"]');
+            products.forEach(function(product) {
+                product.style.display = 'none';
+            });
+            var products = document.querySelectorAll('[id="xxsmall"]');
+            products.forEach(function(product) {
+                product.style.display = 'block';
+            });
+        }
+
+        function hideXSmall() {
+            var products = document.querySelectorAll('[id="xxsmall"], [id="small"], [id="xxlarge"], [id="xsmall"], [id="3xlarge"], [id="medium"], [id="4xlarge"]');
+            products.forEach(function(product) {
+                product.style.display = 'none';
+            });
+            var products = document.querySelectorAll('[id="xsmall"]');
+            products.forEach(function(product) {
+                product.style.display = 'block';
+            });
+        }
+
+        function hideSmall() {
+            var products = document.querySelectorAll('[id="xxsmall"], [id="small"], [id="xxlarge"], [id="xsmall"], [id="3xlarge"], [id="medium"], [id="4xlarge"]');
+            products.forEach(function(product) {
+                product.style.display = 'none';
+            });
+            var products = document.querySelectorAll('[id="small"]');
+            products.forEach(function(product) {
+                product.style.display = 'block';
+            });
+        }
+
+        function hideMedium() {
+            var products = document.querySelectorAll('[id="xxsmall"], [id="small"], [id="xxlarge"], [id="xsmall"], [id="3xlarge"], [id="medium"], [id="4xlarge"]');
+            products.forEach(function(product) {
+                product.style.display = 'none';
+            });
+            var products = document.querySelectorAll('[id="medium"]');
+            products.forEach(function(product) {
+                product.style.display = 'block';
+            });
+        }
+
+        function hideLarge() {
+            var products = document.querySelectorAll('[id="xxsmall"], [id="small"], [id="xxlarge"], [id="xsmall"], [id="3xlarge"], [id="medium"], [id="4xlarge"]');
+            products.forEach(function(product) {
+                product.style.display = 'none';
+            });
+            var products = document.querySelectorAll('[id="large"]');
+            products.forEach(function(product) {
+                product.style.display = 'block';
+            });
+        }
+
+        function hideXXLarge() {
+            var products = document.querySelectorAll('[id="xxsmall"], [id="small"], [id="xxlarge"], [id="xsmall"], [id="3xlarge"], [id="medium"], [id="4xlarge"]');
+            products.forEach(function(product) {
+                product.style.display = 'none';
+            });
+            var products = document.querySelectorAll('[id="xxlarge"]');
+            products.forEach(function(product) {
+                product.style.display = 'block';
+            });
+        }
+
+        function hide3XLarge() {
+            var products = document.querySelectorAll('[id="xxsmall"], [id="small"], [id="xxlarge"], [id="xsmall"], [id="3xlarge"], [id="medium"], [id="4xlarge"]');
+            products.forEach(function(product) {
+                product.style.display = 'none';
+            });
+            var products = document.querySelectorAll('[id="3xlarge"]');
+            products.forEach(function(product) {
+                product.style.display = 'block';
+            });
+        }
+
+        function hide4XLarge() {
+            var products = document.querySelectorAll('[id="xxsmall"], [id="small"], [id="xxlarge"], [id="xsmall"], [id="3xlarge"], [id="medium"], [id="4xlarge"]');
+            products.forEach(function(product) {
+                product.style.display = 'none';
+            });
+            var products = document.querySelectorAll('[id="4xlarge"]');
+            products.forEach(function(product) {
+                product.style.display = 'block';
+            });
+        }
+
+        function resetFiltr() {
+            var products = document.querySelectorAll('[id="xxsmall"],[id="hoodie"], [id="tshirt"], [id="shorts"], [id="shirt"], [id="jeans"], [id="small"], [id="xxlarge"], [id="xsmall"], [id="3xlarge"], [id="medium"], [id="4xlarge"]');
+
+            var products = document.querySelectorAll('[id="xxsmall"],[id="hoodie"], [id="tshirt"], [id="shorts"], [id="shirt"], [id="jeans"], [id="small"], [id="xxlarge"], [id="xsmall"], [id="3xlarge"], [id="medium"], [id="4xlarge"]');
+            products.forEach(function(product) {
+                product.style.display = 'block';
+            });
+        }
+        
+        function fun() {
+            let dollars = 600 - parseInt(ranger.value);
+            send_result.innerHTML = '$' + dollars;
+            const products = document.querySelectorAll('.product');
+            const sendResult = document.getElementById('send_result');
+            const priceTxt = sendResult.innerHTML;
+            const price = parseInt(priceTxt.replace('$', ''));
+
+            products.forEach((product) => {
+            const priceTxt = product.querySelector('.clothes-price-txt').textContent;
+            const price = parseInt(priceTxt.replace('$', ''));
+            if (price <= dollars) {
+                product.style.display = 'none';
+            } else {
+                product.style.display = 'block';
+            }
+
+            // console.log(dollars + ' ' + price)
+            console.log(price);
+            });
+        }
+ // получение числового значения
+
+        console.log(price);
+
+        function upper() {
+        let dollars = parseInt(range_max.value);
+        send_result_max.innerHTML = '$' + dollars;
+
+        const products = document.querySelectorAll('.productLargePrice');
+
+        products.forEach((product) => {
+            const priceTxt = product.querySelector('.clothes-price-txt').textContent;
+            const price = parseInt(priceTxt.replace('$', ''));
+            if (price >= dollars) {
+                product.style.display = 'none';
+            } else {
+                product.style.display = 'block';
+            }
+
+            // console.log(priceTwo)
+        });
+        }
+
+
+    </script>
+</body>
+</html>
+
+<script>
+let bagCountParagraph = document.getElementById("bagCount");
+        let bagCount = 0;
+        bagCountParagraph.innerHTML = bagCount; 
+        document.querySelectorAll(".addBag-btn").forEach(button => {
+            button.addEventListener("click", function() {
+                bagCountParagraph.innerHTML = clicker();
+            });
+        });
+
+        function clicker() {
+            if (bagCount === 0) {
+                bagCount += 1; 
+            } else {
+                bagCount++; 
+            }
+            return bagCount; 
+        }
+</script>
+
+<style>
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+.nothing {
+    display: none;
+}
+
+.eser {
+    display: block;
+}
+
+.backround {
+    width: 1440px;
+    height: 2000px;
+    background-color: #fff;
+    margin: 80px 0px 200px 260px;
+    border-radius: 25px;
+}
+
+ul li {
+    float: left;
+    list-style: none;
+}
+
+.sercher {
+    width: 938px;
+    height: 48px;
+    border-radius: 62px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #F0F0F0;
+}
+
+input {
+    outline: none;
+}
+
+.bag-counter {
+    border-radius: 38px;
+    border: 2px solid #60B168;
+    background: #FFF;
+    width: 20px;
+    height: 20px;
+    font-size: 11px;
+    border-radius: 50%;
+    margin: 4px 0px 0px 18px;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgba(0, 0, 0);
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.container {
+    display: flex;
+    width: 295px;
+    height: 1220px;
+    padding: 20px 24px;
+    flex-direction: column;
+    align-items: flex-start;
+    float: left;
+    border-radius: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.10);
+    margin: 70px 0px 0px 100px;
+}
+
+.container-txt {
+    color: #000;
+    font-family: 'Montserrat';
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-right: 155px;
+}
+
+.line {
+    background: rgba(0, 0, 0, 0.10);
+    width: 247px;
+    height: 1px;
+}
+
+.clothes-txt {
+    color: rgba(0, 0, 0, 0.60);
+    font-family: 'Montserrat';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    width: 247px;
+    height: 30px;
+    text-align: center;
+    margin: 0px 0px 0px 0px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    transition: 0.2s;
+}
+
+.clothes-txt:hover {
+    color: rgba(0, 0, 0, 0.60);
+    font-family: 'Montserrat';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    width: 247px;
+    height: 30px;
+    text-align: center;
+    margin: 0px 0px 0px 0px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #F0F0F0;
+}
+
+.price-control-txt {
+    color: #000;
+    font-family: 'Montserrat';
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.price-clider-min {
+    float: left;
+    width: 122.5px;
+    transform: rotate(180deg);
+    outline: none;
+}
+
+.price-clider-max {
+    float: left;
+    width: 122.5px;
+    transform: translateX(-1px);
+    outline: none;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none; 
+  cursor: pointer;
+  outline: none;
+  overflow: hidden;
+}
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 6px;
+  background: #ccc;
+  border-radius: 16px;
+}
+
+/* Track: Mozilla Firefox */
+input[type="range"]::-moz-range-track {
+  height: 6px;
+  background: #ccc;
+  border-radius: 20px;
+}
+
+/* Thumb: webkit */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none; 
+  height: 6px;
+  width: 6px;
+  background-color: #fff;
+  border-radius: 20px;
+  border: 2px solid rgb(0, 0, 0);
+  box-shadow: -407px 0 0 400px rgb(0, 0, 0);
+}
+
+
+/* Thumb: Firefox */
+input[type="range"]::-moz-range-thumb {
+  height: 6px;
+  width: 6px;
+  background-color: #fff;
+  border-radius: 20px;
+  border: 1px solid rgb(0, 0, 0);
+  box-shadow: -407px 0 0 400px rgb(0, 0, 0);
+}
+
+.inp-max {
+    float: left;
+    text-align: end;
+    width: 122px;
+    color: #000;
+    font-family: 'Montserrat';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.inp-min {
+    float: left;
+    width: 122px;
+    color: #000;
+    font-family: 'Montserrat';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.container-clothes {
+    float: left;
+    margin: 70px 0px 0px 20px;
+    width: 948px;
+    height: 1300px;
+    display: flex;
+    flex-direction: column;
+}
+
+.container-clothes-txt {
+    color: #000;
+    font-family: 'Montserrat';
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-bottom: 16px;
+}
+
+.clothes-block {
+    border-radius: 20px;
+}
+
+.clothes-block-navigate {
+    border-radius: 20px;
+    margin: 0px 20px 0px 20px;
+}
+
+.product {
+    float: left;
+    margin: 0px 20px 36px 0px;
+}
+
+.clothes-name-txt {
+    color: #000;
+    font-family: 'Montserrat';
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin: 16px 0px 4px 0px;
+    transition: 0.1s;
+}
+
+.clothes-price-txt {
+    color: #000;
+    font-family: 'Montserrat';
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    transition: 0.1s;
+}
+
+.clothes-btn {
+    transition: 0.1s;
+    background: none;
+    width: 295px;
+    height: 377px;
+    text-align: justify;
+    display: flex;
+    flex-direction: column;
+}
+
+.product:hover {
+
+    .clothes-btn {
+        border-radius: 20px;
+        background: rgba(0, 0, 0, 0.3);
+        height: 377px;
+        width: 295px;
+        text-align: justify;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .clothes-name-txt {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+
+    .clothes-price-txt {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+
+    .addBag-btn {
+        opacity: 1;
+        transform: none
+    }
+
+    .clothes-image {
+        border-radius: 5px 5px 20px 20px;
+    }
+
+}
+
+.productLargePrice:hover {
+
+    .clothes-btn {
+        border-radius: 20px;
+        background: rgba(0, 0, 0, 0.3);
+        height: 377px;
+        width: 295px;
+        text-align: justify;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .clothes-name-txt {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+
+    .clothes-price-txt {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+
+    .addBag-btn {
+        opacity: 1;
+        transform: none
+    }
+
+    .clothes-image {
+        border-radius: 5px 5px 20px 20px;
+    }
+
+}
+
+.productLargePrice {
+    float: left;
+    margin: 0px 20px 36px 0px;
+}
+
+.addBag-btn {
+    position: absolute;
+    bottom: 20px;
+    left: 24px;
+    width: 247px;
+    height: 48px;
+    border-radius: 6px;
+    background: #000;
+    color: #FFF;
+    font-family: 'Montserrat';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    opacity: 0;
+    transition: opacity 0.1s;
+}
+
+.clothes-btn:hover .addBag-btn {
+    opacity: 1;
+}
+
+.clothes-image {
+    border-radius: 20px;
+    transition: 0.1s;
+}
+
+
+
+@keyframes changeBackgroundColor {
+  0% {
+    background-color: green;
+  }
+  100% {
+    background-color: black;
+  }
+}
+
+.addBag-btn:active {
+  animation-name: changeBackgroundColor;
+  animation-duration: 0.5s; /* Продолжительность анимации */
+}
+
+.size-txt {
+    color: #000;
+    font-family: 'Montserrat';
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.ps-text {
+    color: rgba(0, 0, 0, 0.80);
+    font-family: 'Montserrat';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.refresh-btn {
+    margin: 24px 0px 24px 0px;
+    width: 247px;
+    height: 48px;
+    border-radius: 62px;
+    background: #000;
+    color: white;
+    font-family: 'Montserrat';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    transition: 0.3s;
+}
+
+.refresh-btn:hover {
+    margin: 24px 0px 24px 0px;
+    width: 247px;
+    height: 48px;
+    border-radius: 62px;
+    background: #000;
+    color: white;
+    font-family: 'Montserrat';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: 0.15em;
+}
+
+.refresh-btn:active {
+    animation-name: changeBackgroundColor;
+    animation-duration: 1s;
+}
+
+.btn-git {
+    width: 155px;
+    height: 52px;
+    margin: 0px 0px 0px 10px;
+    float: left;
+    border-radius: 6px;
+    background: #000;
+    color: white;
+    font-family: 'Montserrat';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    transition: 0.3s;
+}
+
+.navigation-git {
+    margin: 24px 0px 0px 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 247px;
+}
+</style>
